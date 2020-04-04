@@ -3,13 +3,13 @@ import ItemList from './ItemList/ItemList';
 import InputItem from './InputItem/InputItem';
 import Footer from './Footer/Footer'
 
-const todoItems = {
-  first: 'Сделать 19 урок',
-  second: 'Оплатить интернет',
-  third: 'Сварить кашу',
-  fourth: 'Почитать книгу'
-};
-const count = Object.keys(todoItems).length;
+const todoItems = [
+  'Сделать 19 урок',
+  'Оплатить интернет',
+  'Сварить кашу',
+  'Почитать книгу'
+];
+const count = todoItems.length;
 
 const App = () => (
   <div>

@@ -2,10 +2,7 @@ import React from 'react';
 import Item from '../Item/Item';
 
 const ItemList = ({todoItems}) => (<ul>
-    <Item todoItems={todoItems.first}/>
-    <Item todoItems={todoItems.second}/>
-    <Item todoItems={todoItems.third}/>
-    <Item todoItems={todoItems.fourth}/>
+    {todoItems.map(task => <Item task={task}/>)}
   </ul>)
 
   export default ItemList;
