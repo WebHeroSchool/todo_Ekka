@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Item = () => (
+const Item = ({task}) => (
     <li>
-        Очень важное дело!
+        {task}
     </li>    
 );
 
