@@ -4,10 +4,10 @@ import InputItem from './InputItem/InputItem';
 import Footer from './Footer/Footer'
 
 const todoItems = [
-  {id: 1, task: 'Сделать 19 урок'},
-  {id: 2, task: 'Оплатить интернет'},
-  {id: 3, task: 'Сварить кашу'},
-  {id: 4, task: 'Почитать книгу'}
+  {id: 0, task: 'Сделать 19 урок'},
+  {id: 1, task: 'Оплатить интернет'},
+  {id: 2, task: 'Сварить кашу'},
+  {id: 3, task: 'Почитать книгу'}
 ];
 const count = todoItems.length;
 
