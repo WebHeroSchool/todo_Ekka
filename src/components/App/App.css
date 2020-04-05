@@ -1,0 +1,13 @@
+.wrap {
+    margin: 0 auto;
+    width: 500px;
+}
+.wrap * {
+    font-family: Verdana, sans-serif;
+    letter-spacing: 1px;
+}
+.wrap__title {
+    font-family: 'Comfortaa';
+    letter-spacing: 3px;
+    font-size: 40px;
+}
