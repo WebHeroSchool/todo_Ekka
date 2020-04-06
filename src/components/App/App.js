@@ -2,7 +2,7 @@ import React from 'react';
 import ItemList from './ItemList/ItemList';
 import InputItem from './InputItem/InputItem';
 import Footer from './Footer/Footer';
-import './App.css';
+import styles from './App.module.css';
 import '../../fonts.css';
 
 const todoItems = [
@@ -14,8 +14,8 @@ const todoItems = [
 const count = todoItems.length;
 
 const App = () => (
-  <main className='wrap'>
-    <h1 className='wrap__title'>Важные дела:</h1>    
+  <main className={styles.wrap}>
+    <h1 className={styles.title}>Важные дела:</h1>    
     <InputItem />
     <ItemList todoItems={todoItems}/>
     <Footer count = {count} />
