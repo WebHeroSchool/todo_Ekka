@@ -4,6 +4,7 @@ import InputItem from './InputItem/InputItem';
 import Footer from './Footer/Footer';
 import styles from './App.module.css';
 import '../../fonts.css';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 const App = () => {
   const todoItems = [
@@ -30,10 +31,18 @@ const App = () => {
   ];
   const count = todoItems.length;
   
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#6c5ce7'
+      }
+    }
+  });
+  
   return (<main className={styles.wrap}>
     <h1 className={styles.title}>Важные дела:</h1>    
-    <InputItem />
-    <ItemList todoItems={todoItems}/>
+    <InputItem theme={theme}/>
+    <ItemList todoItems={todoItems} theme={theme}/>
     <Footer count = {count} />
   </main>);
 }

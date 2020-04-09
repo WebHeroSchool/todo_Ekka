@@ -1,6 +1,8 @@
 .wrap {
     margin: 0 auto;
     width: 310px;
+    box-shadow: 15px 15px 20px 10px #c4c4c4;
+    padding: 20px;
 }
 .wrap * {
     font-family: Verdana, sans-serif;
@@ -10,4 +12,5 @@
     font-family: 'Comfortaa';
     letter-spacing: 3px;
     font-size: 40px;
+    margin-top: .3em;
 }
