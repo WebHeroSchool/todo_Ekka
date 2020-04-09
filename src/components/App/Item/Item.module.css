@@ -12,11 +12,9 @@
     position: absolute;
     right: 0;
     top: 6px;
-    visibility: hidden;
-    opacity: 0;
+    opacity: .3;
     transition: all .2s;
 }
 .item:hover .icon_delete{
-    visibility: visible;
     opacity: .8;
 }
