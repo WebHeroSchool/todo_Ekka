@@ -8,8 +8,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 
 class App extends React.Component{
-  render() {
-    const todoItems = [
+  state = {
+    todoItems: [
       {
         id: 0, 
         task: 'Сделать 19 урок',
@@ -30,9 +30,10 @@ class App extends React.Component{
         task: 'Почитать книгу',
         isDone: false
       }
-    ];
-    
-    const count = todoItems.length;
+    ]
+  }
+  render() {
+    const count = this.state.todoItems.length;
     
     const theme = createMuiTheme({
       palette: {
@@ -45,7 +46,7 @@ class App extends React.Component{
     return (<main className={styles.wrap}>
       <h1 className={styles.title}>Важные дела:</h1>    
       <InputItem theme={theme}/>
-      <ItemList todoItems={todoItems} theme={theme}/>
+      <ItemList todoItems={this.state.todoItems} theme={theme}/>
       <Footer count = {count} />
     </main>);
   }
