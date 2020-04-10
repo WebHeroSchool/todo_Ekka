@@ -8,7 +8,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Done from '@material-ui/icons/DoneOutline';
 import Undone from '@material-ui/icons/ErrorOutline';
-const Item = ({task, isDone, theme}) => (
+
+const Item = ({task, isDone, theme,  onClickDone}) => (
     <li className={
         classnames({
             [styles.item]: true,
@@ -24,6 +25,7 @@ const Item = ({task, isDone, theme}) => (
                 checkedIcon={<Done />}
                 name="checkedB"
                 color="primary"
+                onClick = {() => onClickDone(isDone)}
             />
             }
             label={task}   

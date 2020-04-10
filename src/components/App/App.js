@@ -32,6 +32,9 @@ class App extends React.Component{
       }
     ]
   }
+
+  onClickDone = (isDone) => {console.log(isDone)}
+
   render() {
     const count = this.state.todoItems.length;
     
@@ -46,7 +49,7 @@ class App extends React.Component{
     return (<main className={styles.wrap}>
       <h1 className={styles.title}>Важные дела:</h1>    
       <InputItem theme={theme}/>
-      <ItemList todoItems={this.state.todoItems} theme={theme}/>
+      <ItemList todoItems={this.state.todoItems} theme={theme} onClickDone={this.onClickDone}/>
       <Footer count = {count} />
     </main>);
   }
