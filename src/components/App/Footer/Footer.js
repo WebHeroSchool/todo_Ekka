@@ -1,9 +1,10 @@
 import React from 'react';
+import styles from './Footer.module.css'
 
 const Footer = ({count}) => (
-    <p>
+    <footer className={styles.footer}>
        Осталось дел: {count}
-    </p>    
+    </footer>    
 );
 
 export default Footer;
