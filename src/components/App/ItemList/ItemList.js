@@ -7,6 +7,7 @@ const ItemList = ({todoItems, theme, onClickDone}) => (<ul>
         key={todoItem.id} 
         task={todoItem.task} 
         isDone={todoItem.isDone}
+        id={todoItem.id}
         theme={theme} 
         onClickDone={onClickDone} />)}
   </ul>)
