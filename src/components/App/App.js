@@ -53,6 +53,12 @@ class App extends React.Component{
     this.setState({todoItems: newItemList});
   };
 
+  onClickDelete = (id) => {
+    const newItemList = this.state.todoItems.filter(item => item.id !== id);
+
+    this.setState({todoItems: newItemList});
+  }
+
   render() {
     
     const theme = createMuiTheme({
@@ -70,6 +76,7 @@ class App extends React.Component{
         todoItems={this.state.todoItems} 
         theme={theme} 
         onClickDone={this.onClickDone}
+        onClickDelete={this.onClickDelete}
       />
       <Footer count = {this.state.count()} />
     </main>);
