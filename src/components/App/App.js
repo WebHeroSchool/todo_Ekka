@@ -13,7 +13,7 @@ class App extends React.Component{
       {
         id: 0, 
         task: 'Сделать 19 урок',
-        isDone: true
+        isDone: false
       },
       {
         id: 1, 
@@ -23,20 +23,43 @@ class App extends React.Component{
       {
         id: 2, 
         task: 'Сварить кашу',
-        isDone: true
+        isDone: false
       },
       {
         id: 3, 
         task: 'Почитать книгу',
         isDone: false
       }
-    ]
+    ],
+    count: function() {
+      let counter = 0;
+      this.todoItems.forEach(item => {
+        if (!item.isDone) counter++;
+      })
+      return counter;
+    }
   }
 
-  onClickDone = (isDone) => {console.log(isDone)}
+  onClickDone = (id) => {
+    const newItemList = this.state.todoItems.map(item => {
+      const newItem = {...item};
+
+      if (item.id === id) {
+        newItem.isDone = !item.isDone
+      }
+      return newItem;
+    });
+
+    this.setState({todoItems: newItemList});
+  };
+
+  onClickDelete = (id) => {
+    const newItemList = this.state.todoItems.filter(item => item.id !== id);
+
+    this.setState({todoItems: newItemList});
+  }
 
   render() {
-    const count = this.state.todoItems.length;
     
     const theme = createMuiTheme({
       palette: {
@@ -49,8 +72,13 @@ class App extends React.Component{
     return (<main className={styles.wrap}>
       <h1 className={styles.title}>Важные дела:</h1>    
       <InputItem theme={theme}/>
-      <ItemList todoItems={this.state.todoItems} theme={theme} onClickDone={this.onClickDone}/>
-      <Footer count = {count} />
+      <ItemList 
+        todoItems={this.state.todoItems} 
+        theme={theme} 
+        onClickDone={this.onClickDone}
+        onClickDelete={this.onClickDelete}
+      />
+      <Footer count = {this.state.count()} />
     </main>);
   }
 }
