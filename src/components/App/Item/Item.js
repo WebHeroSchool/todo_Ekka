@@ -9,7 +9,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import Done from '@material-ui/icons/DoneOutline';
 import Undone from '@material-ui/icons/ErrorOutline';
 
-const Item = ({task, isDone, theme,  onClickDone, id}) => (
+const Item = ({task, isDone, theme,  onClickDone, id, onClickDelete}) => (
     <li className={
         classnames({
             [styles.item]: true,
@@ -31,7 +31,10 @@ const Item = ({task, isDone, theme,  onClickDone, id}) => (
             label={task}   
         />
             <span className={styles.icon_delete}>   
-                <IconButton aria-label="delete">
+                <IconButton 
+                    aria-label="delete" 
+                    onClick = {() => onClickDelete(id)}
+                >
                     <DeleteIcon fontSize="small"/>
                 </IconButton>
             </span>

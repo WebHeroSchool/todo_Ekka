@@ -1,7 +1,7 @@
 import React from 'react';
 import Item from '../Item/Item';
 
-const ItemList = ({todoItems, theme, onClickDone}) => (<ul>
+const ItemList = ({todoItems, theme, onClickDone, onClickDelete}) => (<ul>
     {todoItems.map(todoItem => 
       <Item 
         key={todoItem.id} 
@@ -9,7 +9,9 @@ const ItemList = ({todoItems, theme, onClickDone}) => (<ul>
         isDone={todoItem.isDone}
         id={todoItem.id}
         theme={theme} 
-        onClickDone={onClickDone} />)}
+        onClickDone={onClickDone}
+        onClickDelete={onClickDelete}
+      />)}
   </ul>)
 
   export default ItemList;
