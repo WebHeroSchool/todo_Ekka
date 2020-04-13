@@ -59,8 +59,7 @@ class App extends React.Component{
     this.setState({todoItems: newItemList});
   }
 
-  render() {
-    
+  render() {    
     const theme = createMuiTheme({
       palette: {
         primary: {
