@@ -41,22 +41,18 @@ class App extends React.Component{
   }
 
   onClickDone = (id) => {
-    const newItemList = this.state.todoItems.map(item => {
-      const newItem = {...item};
+    this.setState(state => ({todoItems: state.todoItems.map(item => {
+        const newItem = {...item};
 
-      if (item.id === id) {
-        newItem.isDone = !item.isDone
-      }
-      return newItem;
-    });
-
-    this.setState({todoItems: newItemList});
+        if (item.id === id) {
+          newItem.isDone = !item.isDone
+        }
+        return newItem;})
+    }))    
   };
 
   onClickDelete = (id) => {
-    const newItemList = this.state.todoItems.filter(item => item.id !== id);
-
-    this.setState({todoItems: newItemList});
+    this.setState(state => ({todoItems: state.todoItems.filter(item => item.id !== id)}));
   }
 
   render() {    
