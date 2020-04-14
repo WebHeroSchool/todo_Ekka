@@ -42,4 +42,9 @@ const Item = ({task, isDone, theme,  onClickDone, id, onClickDelete}) => (
     </li>      
 );
 
+Item.defaultProps = {
+    task: 'Что-то надо сделать',
+    isDone: false
+}
+
 export default Item;

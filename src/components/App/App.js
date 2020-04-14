@@ -31,32 +31,44 @@ class App extends React.Component{
         isDone: false
       }
     ],
-    count: function() {
+    currentTasks: function() {
       let counter = 0;
       this.todoItems.forEach(item => {
         if (!item.isDone) counter++;
       })
       return counter;
-    }
+    },
+    allTasks: function() {
+      return this.todoItems.length;
+    },
+    error: false
   }
 
-  onClickDone = (id) => {
-    const newItemList = this.state.todoItems.map(item => {
-      const newItem = {...item};
+  onClickDone = (id) => this.setState(state => ({todoItems: state.todoItems.map(item => {
+        const newItem = {...item};
 
-      if (item.id === id) {
-        newItem.isDone = !item.isDone
-      }
-      return newItem;
-    });
+        if (item.id === id) {
+          newItem.isDone = !item.isDone
+        }
+        return newItem})
+    }));
 
-    this.setState({todoItems: newItemList});
-  };
+  onClickDelete = (id) => this.setState(state => ({todoItems: state.todoItems.filter(item => item.id !== id)}));
 
-  onClickDelete = (id) => {
-    const newItemList = this.state.todoItems.filter(item => item.id !== id);
-
-    this.setState({todoItems: newItemList});
+  onClickAdd = value => {
+    if (value) {
+      this.setState(state => ({
+        todoItems: [
+          ...state.todoItems,
+          {
+            id: state.allTasks(),
+            task: value,
+            isDone: false
+          }
+        ],
+        error: false
+      }));
+    } else this.setState({error: true});
   }
 
   render() {    
@@ -70,14 +82,21 @@ class App extends React.Component{
     
     return (<main className={styles.wrap}>
       <h1 className={styles.title}>Важные дела:</h1>    
-      <InputItem theme={theme}/>
+      <InputItem 
+        theme={theme}
+        onClickAdd={this.onClickAdd}
+        error={this.state.error}
+      />
       <ItemList 
         todoItems={this.state.todoItems} 
         theme={theme} 
         onClickDone={this.onClickDone}
         onClickDelete={this.onClickDelete}
       />
-      <Footer count = {this.state.count()} />
+      <Footer 
+        currentTasks = {this.state.currentTasks()} 
+        allTasks = {this.state.allTasks()}
+      />
     </main>);
   }
 }
