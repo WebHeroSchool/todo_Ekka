@@ -8,4 +8,9 @@ const Footer = ({currentTasks, allTasks}) => (
     </footer>    
 );
 
+Footer.defaultProps = {
+    currentTasks: 0,
+    allTasks: 0
+};
+
 export default Footer;
