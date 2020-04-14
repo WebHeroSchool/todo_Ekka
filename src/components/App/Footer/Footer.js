@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './Footer.module.css'
+import styles from './Footer.module.css';
+import PropTypes from 'prop-types';
 
 const Footer = ({currentTasks, allTasks}) => (
     <footer className={styles.footer}>
@@ -8,9 +9,9 @@ const Footer = ({currentTasks, allTasks}) => (
     </footer>    
 );
 
-Footer.defaultProps = {
-    currentTasks: 0,
-    allTasks: 0
-};
+Footer.propTypes = {
+    currentTasks: PropTypes.number.isRequired,
+    allTasks: PropTypes.number.isRequired
+}
 
 export default Footer;

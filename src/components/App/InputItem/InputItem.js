@@ -4,6 +4,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Grid from '@material-ui/core/Grid';
+import PropTypes from 'prop-types';
 
 class InputItem extends React.Component {
     state = {
@@ -32,7 +33,7 @@ class InputItem extends React.Component {
                     variant="outlined"
                     size="small"
                     value={this.state.inputValue}
-                    onChange={ e => this.setState({ inputValue: e.target.value.toUpperCase() }) }
+                    onChange={ e => this.setState({ inputValue: e.target.value }) }
                     onKeyDown={ e => { if(e.keyCode === 13) this.onButtonClick() } }
                 />
                 <Fab 
@@ -46,6 +47,11 @@ class InputItem extends React.Component {
             </Grid>
         </ThemeProvider>);
     }
+}
+
+InputItem.propTypes = {
+    onClickAdd: PropTypes.func.isRequired,
+    error: PropTypes.bool.isRequired
 }
 
 export default InputItem;
