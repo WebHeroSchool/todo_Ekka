@@ -51,7 +51,7 @@ Item.defaultProps = {
 Item.propTypes = {
     id: PropTypes.number.isRequired,
     task: PropTypes.string.isRequired,
-    isDone: PropTypes.bool,
+    isDone: PropTypes.bool.isRequired,
     onClickDone: PropTypes.func.isRequired,
     onClickDelete: PropTypes.func.isRequired
 }
