@@ -12,12 +12,12 @@ class App extends React.Component{
     todoItems: [
       {
         id: 0, 
-        task: 'Сделать 19 урок',
+        task: 'Сделать дело',
         isDone: false
       },
       {
         id: 1, 
-        task: 'Оплатить интернет',
+        task: 'Гулять смело',
         isDone: false
       },
       {
@@ -27,7 +27,7 @@ class App extends React.Component{
       },
       {
         id: 3, 
-        task: 'Почитать книгу',
+        task: 'Съесть кашу',
         isDone: false
       }
     ],
@@ -81,7 +81,7 @@ class App extends React.Component{
     });
     
     return (<main className={styles.wrap}>
-      <h1 className={styles.title}>Важные дела:</h1>    
+      <h1 className={styles.title}>Мой список дел:</h1>    
       <InputItem 
         theme={theme}
         onClickAdd={this.onClickAdd}

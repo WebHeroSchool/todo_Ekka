@@ -25,17 +25,22 @@ class InputItem extends React.Component {
                 direction="row"
                 justify="space-between"
                 alignItems="center"
+                spacing={2}
             >
+                <Grid item xs>
                 <TextField 
                     id="outlined-basic" 
                     label={ this.props.error ? "Введи что-нибудь" : "Добавить новое дело" }
                     color={ this.props.error ? "secondary" : "primary" }
                     variant="outlined"
                     size="small"
+                    fullWidth
                     value={this.state.inputValue}
                     onChange={ e => this.setState({ inputValue: e.target.value }) }
                     onKeyDown={ e => { if(e.keyCode === 13) this.onButtonClick() } }
                 />
+                </Grid>
+                <Grid item xs={2}>
                 <Fab 
                     color="primary" 
                     aria-label="add" 
@@ -44,6 +49,7 @@ class InputItem extends React.Component {
                 >
                     <AddIcon />
                 </Fab>
+                </Grid>
             </Grid>
         </ThemeProvider>);
     }
