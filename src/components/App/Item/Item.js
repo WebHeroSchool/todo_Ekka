@@ -13,13 +13,11 @@ import PropTypes from 'prop-types';
 class Item extends React.Component {  
     
     componentDidMount() {
-        console.log('Добавился элемент списка');
-    }
-    componentDidUpdate() {
-        console.log('Элемент списка обновлен');
+        this.timer = setInterval(() => console.log('Новый элемент списка подворовывает'), 1000);
     }
     componentWillUnmount() {
         console.log('Элемент списка удален');
+        clearInterval(this.timer);
     }
     
     render() {        
