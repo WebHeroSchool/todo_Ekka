@@ -10,38 +10,55 @@ import Done from '@material-ui/icons/DoneOutline';
 import Undone from '@material-ui/icons/ErrorOutline';
 import PropTypes from 'prop-types';
 
-const Item = ({task, isDone, theme,  onClickDone, id, onClickDelete}) => (
-    <li className={
-        classnames({
-            [styles.item]: true,
-            [styles.done]: isDone,
-        })
-    }>
-        <ThemeProvider theme={theme}>
-            <FormControlLabel
-            theme={theme}
-            control={
-            <Checkbox 
-                icon={<Undone fontSize="large" />} 
-                checkedIcon={<Done />}
-                name="checkedB"
-                color="primary"
-                onClick = {() => onClickDone(id)}
-            />
-            }
-            label={task}   
-        />
-            <span className={styles.icon_delete}>   
-                <IconButton 
-                    aria-label="delete" 
-                    onClick = {() => onClickDelete(id)}
-                >
-                    <DeleteIcon fontSize="small"/>
-                </IconButton>
-            </span>
-        </ThemeProvider>
-    </li>      
-);
+class Item extends React.Component {  
+    
+    componentDidMount() {
+        console.log('Добавился элемент списка');
+    }
+    componentDidUpdate() {
+        console.log('Элемент списка обновлен');
+    }
+    componentWillUnmount() {
+        console.log('Элемент списка удален');
+    }
+    
+    render() {        
+        const {task, isDone, theme,  onClickDone, id, onClickDelete} = this.props;
+
+        return(
+            <li className={
+                classnames({
+                    [styles.item]: true,
+                    [styles.done]: isDone,
+                })
+            }>
+                <ThemeProvider theme={theme}>
+                    <FormControlLabel
+                    theme={theme}
+                    control={
+                    <Checkbox 
+                        icon={<Undone fontSize="large" />} 
+                        checkedIcon={<Done />}
+                        name="checkedB"
+                        color="primary"
+                        onClick = {() => onClickDone(id)}
+                    />
+                    }
+                    label={task}   
+                />
+                    <span className={styles.icon_delete}>   
+                        <IconButton 
+                            aria-label="delete" 
+                            onClick = {() => onClickDelete(id)}
+                        >
+                            <DeleteIcon fontSize="small"/>
+                        </IconButton>
+                    </span>
+                </ThemeProvider>
+            </li>      
+        )
+    }
+}
 
 Item.defaultProps = {
     task: 'Что-то надо сделать',
