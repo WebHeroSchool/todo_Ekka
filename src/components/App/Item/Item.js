@@ -8,6 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Done from '@material-ui/icons/DoneOutline';
 import Undone from '@material-ui/icons/ErrorOutline';
+import PropTypes from 'prop-types';
 
 const Item = ({task, isDone, theme,  onClickDone, id, onClickDelete}) => (
     <li className={
@@ -45,6 +46,14 @@ const Item = ({task, isDone, theme,  onClickDone, id, onClickDelete}) => (
 Item.defaultProps = {
     task: 'Что-то надо сделать',
     isDone: false
+}
+
+Item.propTypes = {
+    id: PropTypes.number.isRequired,
+    task: PropTypes.string.isRequired,
+    isDone: PropTypes.bool.isRequired,
+    onClickDone: PropTypes.func.isRequired,
+    onClickDelete: PropTypes.func.isRequired
 }
 
 export default Item;
