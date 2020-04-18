@@ -1,103 +1,37 @@
 import React from 'react';
-import ItemList from './ItemList/ItemList';
-import InputItem from './InputItem/InputItem';
-import Footer from './Footer/Footer';
 import styles from './App.module.css';
 import '../../fonts.css';
-import { createMuiTheme } from '@material-ui/core/styles';
+import Todo from './Todo/Todo';
+import Contacts from './Contacts/Contacts';
+import About from './About/About';
+import Card from '@material-ui/core/Card';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
-class App extends React.Component{
-  state = {
-    todoItems: [
-      {
-        id: 0, 
-        task: 'Сделать дело',
-        isDone: false
-      },
-      {
-        id: 1, 
-        task: 'Гулять смело',
-        isDone: false
-      },
-      {
-        id: 2, 
-        task: 'Сварить кашу',
-        isDone: false
-      },
-      {
-        id: 3, 
-        task: 'Съесть кашу',
-        isDone: false
-      }
-    ],
-    currentTasks: function() {
-      let counter = 0;
-      this.todoItems.forEach(item => {
-        if (!item.isDone) counter++;
-      })
-      return counter;
-    },
-    allTasks: function() {
-      return this.todoItems.length;
-    },
-    error: false
-  }
+class App extends React.Component {
+  render() {
+    return(
+      <Router>
+        <div className={styles.wrap}>
+          <Card className={styles.sidebar}>
+            <MenuList>
+              <Link to='/' className={styles.link}><MenuItem>Обо мне</MenuItem></Link>
+              <Link to='/todo' className={styles.link}><MenuItem>Дела</MenuItem></Link>
+              <Link to='/contacts' className={styles.link}><MenuItem>Контакты</MenuItem></Link>
+            </MenuList>
+          </Card>
 
-  onClickDone = (id) => this.setState(state => ({todoItems: state.todoItems.map(item => {
-        const newItem = {...item};
-
-        if (item.id === id) {
-          newItem.isDone = !item.isDone
-        }
-        return newItem})
-    }));
-
-  onClickDelete = (id) => this.setState(state => ({todoItems: state.todoItems.filter(item => item.id !== id)}));
-
-  onClickAdd = value => {
-    if (value) {
-      this.setState(state => ({
-        todoItems: [
-          ...state.todoItems,
-          {
-            id: state.allTasks(),
-            task: value,
-            isDone: false
-          }
-        ],
-        error: false
-      }));
-    } else this.setState({error: true});
-  }
-
-  render() {    
-    const theme = createMuiTheme({
-      palette: {
-        primary: {
-          main: '#6c5ce7'
-        }
-      }
-    });
-    
-    return (<main className={styles.wrap}>
-      <h1 className={styles.title}>Мой список дел:</h1>    
-      <InputItem 
-        theme={theme}
-        onClickAdd={this.onClickAdd}
-        error={this.state.error}
-      />
-      <ItemList 
-        todoItems={this.state.todoItems} 
-        theme={theme} 
-        onClickDone={this.onClickDone}
-        onClickDelete={this.onClickDelete}
-      />
-      <Footer 
-        currentTasks = {this.state.currentTasks()} 
-        allTasks = {this.state.allTasks()}
-      />
-    </main>);
+          <Card className={styles.content}>
+            <Route path='/' exact component={About} />
+            <Route path='/todo' component={Todo} />
+            <Route path='/contacts' component={Contacts} />
+          </Card>
+        </div>
+      </Router>
+      
+    )
   }
 }
 
