@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ItemList from '../ItemList/ItemList';
 import InputItem from '../InputItem/InputItem';
 import Footer from '../Footer/Footer';
@@ -6,72 +6,78 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import styles from './Todo.module.css';
 import { CardContent } from '@material-ui/core';
 
-class Todo extends React.Component {
-    state = {
-        todoItems: [
-          {
-            id: 0, 
-            task: 'Сделать дело',
-            isDone: false
-          },
-          {
-            id: 1, 
-            task: 'Гулять смело',
-            isDone: false
-          },
-          {
-            id: 2, 
-            task: 'Сварить кашу',
-            isDone: false
-          },
-          {
-            id: 3, 
-            task: 'Съесть кашу',
-            isDone: false
-          }
-        ],
-        currentTasks: function() {
+const Todo = () =>  {
+    const [todoItems, setTodoItems] = useState([
+        {
+          id: 0, 
+          task: 'Сделать дело',
+          isDone: false
+        },
+        {
+          id: 1, 
+          task: 'Гулять смело',
+          isDone: false
+        },
+        {
+          id: 2, 
+          task: 'Сварить кашу',
+          isDone: false
+        },
+        {
+          id: 3, 
+          task: 'Съесть кашу',
+          isDone: false
+        }
+      ]
+    );
+
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+      console.log('Список дел создан');
+    }, []); 
+
+    useEffect(() => {
+      console.log('Список дел обновлен');
+    }, [todoItems]);
+
+    const currentTasks =  function() {
           let counter = 0;
-          this.todoItems.forEach(item => {
+          todoItems.forEach(item => {
             if (!item.isDone) counter++;
           })
           return counter;
-        },
-        allTasks: function() {
-          return this.todoItems.length;
-        },
-        error: false
-      }
+        };
+
+    const allTasks = todoItems.length;
     
-      onClickDone = (id) => this.setState(state => ({todoItems: state.todoItems.map(item => {
+    const onClickDone = id => setTodoItems(todoItems.map(item => {
             const newItem = {...item};
     
             if (item.id === id) {
               newItem.isDone = !item.isDone
             }
             return newItem})
-        }));
+        );
     
-      onClickDelete = (id) => this.setState(state => ({todoItems: state.todoItems.filter(item => item.id !== id)}));
+    const onClickDelete = id => setTodoItems(todoItems.filter(item => item.id !== id));
     
-      onClickAdd = value => {
+    const onClickAdd = value => {
         if (value) {
-          this.setState(state => ({
-            todoItems: [
-              ...state.todoItems,
+          setTodoItems([
+              ...todoItems,
               {
-                id: state.allTasks(),
+                id: allTasks + 1,
                 task: value,
                 isDone: false
               }
-            ],
-            error: false
-          }));
-        } else this.setState({error: true});
-      }
+            ]
+          );
+          setError(false);
+        } else setError(true);
+      };
     
-      render() {    
-        const theme = createMuiTheme({
+      const theme = createMuiTheme({
           palette: {
             primary: {
               main: '#6c5ce7'
@@ -83,21 +89,21 @@ class Todo extends React.Component {
           <h1 className={styles.title}>Мой список дел:</h1>    
           <InputItem 
             theme={theme}
-            onClickAdd={this.onClickAdd}
-            error={this.state.error}
+            onClickAdd={onClickAdd}
+            error={error}
           />
           <ItemList 
-            todoItems={this.state.todoItems} 
+            todoItems={todoItems} 
             theme={theme} 
-            onClickDone={this.onClickDone}
-            onClickDelete={this.onClickDelete}
+            onClickDone={onClickDone}
+            onClickDelete={onClickDelete}
           />
           <Footer 
-            currentTasks = {this.state.currentTasks()} 
-            allTasks = {this.state.allTasks()}
+            currentTasks = {currentTasks()} 
+            allTasks = {allTasks}
           />
         </CardContent>);
       }
-}
+
 
 export default Todo;

@@ -19,7 +19,6 @@ class About extends React.Component {
             username: 'Ekka-N'
         })
         .then(({ data }) => {
-            console.log(data);
             this.setState({
                 aboutMe: data
             })
