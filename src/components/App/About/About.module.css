@@ -1,0 +1,44 @@
+/* common */
+.wrap {
+    max-width: 350px;
+}
+.content {
+    width: 85%;
+} 
+.title {
+    font-family: 'Comfortaa';
+    letter-spacing: 3px;
+    font-size: 2em;
+    margin-top: .3em;
+}
+/* about me */ 
+
+.avatar{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.desc {
+    display: flex;
+    align-items: center;
+}
+
+/* repos */ 
+
+.repo,
+.text {
+    font-family: Verdana, sans-serif;
+    letter-spacing: 1px;
+}
+.repo {
+    padding: 4px 0;
+}
+.repo_url {
+    text-decoration: none;
+    color: #333;
+}
+.repo_url:hover {
+    color: #6c5ce7;
+    text-decoration: underline;
+}
