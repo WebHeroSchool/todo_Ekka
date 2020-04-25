@@ -4,6 +4,7 @@ import InputItem from '../InputItem/InputItem';
 import Footer from '../Footer/Footer';
 import { createMuiTheme } from '@material-ui/core/styles';
 import styles from './Todo.module.css';
+import { CardContent } from '@material-ui/core';
 
 class Todo extends React.Component {
     state = {
@@ -78,7 +79,7 @@ class Todo extends React.Component {
           }
         });
         
-        return (<main className={styles.wrap}>
+        return (<CardContent className={styles.wrap}>
           <h1 className={styles.title}>Мой список дел:</h1>    
           <InputItem 
             theme={theme}
@@ -95,7 +96,7 @@ class Todo extends React.Component {
             currentTasks = {this.state.currentTasks()} 
             allTasks = {this.state.allTasks()}
           />
-        </main>);
+        </CardContent>);
       }
 }
 
