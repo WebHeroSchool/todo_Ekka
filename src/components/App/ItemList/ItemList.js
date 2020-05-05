@@ -1,19 +1,38 @@
-import React from 'react';
-import Item from '../Item/Item';
+import React, { useEffect } from 'react'
+import Item from '../Item/Item'
 import PropTypes from 'prop-types'
+import { Droppable, Draggable } from "react-beautiful-dnd"
 
-const ItemList = ({todoItems, theme, onClickDone, onClickDelete}) => (<ul>
-    {todoItems.map(todoItem => 
-      <Item 
-        key={todoItem.id} 
-        task={todoItem.task} 
-        isDone={todoItem.isDone}
-        id={todoItem.id}
-        theme={theme} 
-        onClickDone={onClickDone}
-        onClickDelete={onClickDelete}
-      />)}
-  </ul>)
+class ItemList extends React.Component { 
+  render() {
+    const {todoItems, theme, onClickDone, onClickDelete} = this.props;
+  
+    return(
+      <Droppable droppableId={'list'}>  
+        {(provided) => (<div ref={provided.innerRef} {...provided.droppableProps}>
+          {todoItems.map((todoItem, index) => 
+            <Draggable draggableId={'item' + todoItem.id} index={index} key={todoItem.id} >
+              {(provided) => (
+                <Item 
+                  task={todoItem.task} 
+                  isDone={todoItem.isDone}
+                  isHidden={todoItem.isHidden}
+                  id={todoItem.id}
+                  index={index}
+                  theme={theme} 
+                  onClickDone={onClickDone}
+                  onClickDelete={onClickDelete}
+                  provided={provided}
+                  innerRef={provided.innerRef}
+                />)}
+              </Draggable>   
+          )}
+          {provided.placeholder}
+        </div>)}            
+        </Droppable>
+    )   
+  }
+}
 
 ItemList.propTypes = {
   todoItems: PropTypes.arrayOf(PropTypes.object).isRequired,

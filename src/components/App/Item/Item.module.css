@@ -2,19 +2,47 @@
     cursor: pointer;
     list-style-type: none;
     position: relative;
-    padding: 8px;
+    padding-left: 30px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    box-shadow: 8px 8px 5px #c4c4c4;
+    background-color: #fff;
+}
+.task {
+    padding: 10px 0;
+}
+.item::before,
+.done::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+}
+.item::before  {
+    background: url(../img/undone.svg);
 }
 .done {
     color: #555;
     text-decoration: line-through;
 }
+.done::before {
+    background: url(../img/done.svg) center;
+}
 .icon_delete {
     position: absolute;
-    right: 0;
-    top: 6px;
+    right: 10px;
+    top: 10px;
     opacity: .2;
     transition: all .2s;
 }
 .item:hover .icon_delete{
-    opacity: .8;
+    opacity: 1;
+}
+.hidden {
+    display: none;
 }

@@ -30,7 +30,7 @@ class InputItem extends React.Component {
                 <Grid item xs>
                 <TextField 
                     id="outlined-basic" 
-                    label={ this.props.error ? "Введи что-нибудь" : "Добавить новое дело" }
+                    label={ this.props.error ? "Поле пустое или такое дело уже есть" : "Добавить новое дело" }
                     color={ this.props.error ? "secondary" : "primary" }
                     variant="outlined"
                     size="small"

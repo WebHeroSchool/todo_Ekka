@@ -1,0 +1,82 @@
+/* common */
+
+.repo {
+    border: 1px solid #c4c4c4;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 10px;
+    font-family: Verdana, sans-serif;
+    letter-spacing: 1px;
+} 
+/* links */
+
+.links {
+    margin-bottom: 10px;
+}
+.repo_url,
+.demo {
+    text-decoration: none;
+}
+.repo_url {
+    color: #000;
+    font-size: 15px;
+    margin-right: 15px;
+}
+.repo_url:hover {
+    color: #6c5ce7;
+    text-decoration: underline;
+}
+.demo,
+.updated {
+    color: #999;
+    font-size: 12px;
+}
+.demo:hover {
+    color: #444;
+    text-decoration: underline;
+}
+
+/* description */
+
+.desc,
+.descIcon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.desc {
+    font-size: 15px;
+    width: 65%;
+}
+.language::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-right: 5px;
+}
+.html::before {
+    background-color: #e34c26;
+}
+.js::before {
+    background-color: #f1e05a;
+}
+.css::before {
+    background-color: #563d7c;
+}
+
+@media (max-width: 560px) {
+    .desc {
+        width: 100%;
+    }
+    .descIcon {
+        display: none;
+    }
+}
+@media (max-width: 335px) {
+    .updated {
+        font-size: 10px;
+    }
+}
