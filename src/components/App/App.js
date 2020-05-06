@@ -4,7 +4,7 @@ import '../../fonts.css';
 import Todo from './Todo/Todo';
 import About from './About/About';
 import Card from '@material-ui/core/Card';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import whsImage from './img/whs.png';
  
 class App extends React.Component {

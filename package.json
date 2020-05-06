@@ -2,6 +2,7 @@
   "name": "todo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://webheroschool.github.io/todo_Ekka",
   "dependencies": {
     "@octokit/rest": "^17.5.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -13,8 +14,7 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "react-sortable-dnd-list": "^1.0.1",
-    "homepage": "https://webheroschool.github.io/todo_Ekka/"
+    "react-sortable-dnd-list": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
