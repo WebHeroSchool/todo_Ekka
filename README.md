@@ -22,7 +22,7 @@ Here you can see it: [Application](https://ekka-n.github.io/react-project/#)
 
 **Use next commands:**
 
-1. git clone https://github.com/WebHeroSchool/reactSouslik.git
+1. git clone https://github.com/WebHeroSchool/todo_Ekka.git
 2. cd ./todo_Ekka
 3. npm start
 
