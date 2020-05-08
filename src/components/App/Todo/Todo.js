@@ -3,6 +3,7 @@ import ItemList from '../ItemList/ItemList';
 import InputItem from '../InputItem/InputItem';
 import { createMuiTheme } from '@material-ui/core/styles';
 import styles from './Todo.module.css';
+import classnames from 'classnames';
 import { CardContent } from '@material-ui/core';
 import { DragDropContext } from "react-beautiful-dnd";
 import noteIcon from '../img/note.svg';
@@ -23,6 +24,16 @@ const Todo = () =>  {
         }
       ]
     );
+    
+    const [buttonsActive, setButtonsActive] = useState({
+      allTasksActive: true,
+      doneTasksActive: false,
+      notdoneTasksActive: false
+    })
+
+    const [error, setError] = useState(false);
+
+    const [isSame, setIsSame] = useState(false);
 
     useEffect(() => {
       const items = localStorage.getItem('todoItems');
@@ -32,8 +43,6 @@ const Todo = () =>  {
     useEffect(() => {
       localStorage.setItem('todoItems', JSON.stringify(todoItems))
     }, [todoItems])
-
-    const [error, setError] = useState(false);
 
     const currentTasks =  function() {
       let counter = 0;
@@ -56,32 +65,16 @@ const Todo = () =>  {
     
     const onClickDelete = id => setTodoItems(todoItems.filter(item => item.id !== id));
 
-    const onClickAllTasks = () => setTodoItems(todoItems.map(item => {
-      const newItem = {...item};
 
-      newItem.isHidden = false;
-      return newItem;
-    }));
-
-    const onClickDoneTasks = () => setTodoItems(todoItems.map(item => {
-      const newItem = {...item};
-  
-      (!item.isDone) ?  newItem.isHidden = true : newItem.isHidden = false;
-
-      return newItem
-    }));
-
-    const onClickUndoneTasks = () => setTodoItems(todoItems.map(item => {
-      const newItem = {...item};
-  
-      (item.isDone) ?  newItem.isHidden = true : newItem.isHidden = false;
-
-      return newItem
-  }));
-    
     const onClickAdd = value => {
-      todoItems.forEach(todo => {if (todo.task === value) value = false});
+      setIsSame(false);
+      
+      todoItems.forEach((todo, index) => {if (todo.task === value) {
+        setIsSame(true);
+        value = false;
+      }});
         
+      console.log(isSame, error);
         if (value) {
           setTodoItems([
               ...todoItems,
@@ -97,6 +90,50 @@ const Todo = () =>  {
         } else setError(true);
       };
     
+    const onClickAllTasks = () => {
+      setTodoItems(todoItems.map(item => {
+      const newItem = {...item};
+
+      newItem.isHidden = false;
+      return newItem;
+      }));
+      setButtonsActive ({
+          allTasksActive: true,
+          doneTasksActive: false,
+          notdoneTasksActive: false
+      });
+    }
+
+    const onClickDoneTasks = () => {
+      setTodoItems(todoItems.map(item => {
+      const newItem = {...item};
+  
+      (!item.isDone) ?  newItem.isHidden = true : newItem.isHidden = false;
+
+      return newItem
+      }));
+      setButtonsActive ({
+        allTasksActive: false,
+        doneTasksActive: true,
+        notdoneTasksActive: false
+      });
+    }
+
+    const onClickNotdoneTasks = () => {
+      setTodoItems(todoItems.map(item => {
+      const newItem = {...item};
+  
+      (item.isDone) ?  newItem.isHidden = true : newItem.isHidden = false;
+
+      return newItem
+      }));
+      setButtonsActive ({
+        allTasksActive: false,
+        doneTasksActive: false,
+        notdoneTasksActive: true
+      });
+    }
+
     const theme = createMuiTheme({
         palette: {
           primary: {
@@ -117,7 +154,7 @@ const Todo = () =>  {
         ...newTodoItems
       ])
     }
-      
+
     return (<CardContent className={styles.wrap}>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={styles.header}>
@@ -125,19 +162,38 @@ const Todo = () =>  {
           <div className={styles.button_container}>
 
             <button 
-              className={styles.button}
+              className={classnames({
+                [styles.button]: true,
+                [styles.button_active]: buttonsActive.allTasksActive
+              })}
               onClick = {() => onClickAllTasks()}
             >Все ({allTasks})</button>
 
             <button 
-              className={styles.button}
+              className={classnames({
+                [styles.button]: true,
+                [styles.button_active]: buttonsActive.doneTasksActive
+              })}
               onClick={() => onClickDoneTasks()}
             >Выполненные ({allTasks - currentTasks()})</button>
 
             <button 
-              className={styles.button}
-              onClick={() => onClickUndoneTasks()}
+              className={classnames({
+                [styles.button]: true,
+                [styles.button_active]: buttonsActive.notdoneTasksActive
+              })}
+              onClick={() => onClickNotdoneTasks()}
             >Невыполненные ({currentTasks()})</button>
+            
+            <div className={classnames({
+              [styles.disclaimer]: true,
+              [styles.notActive]: !error
+            })
+            }>
+              {isSame ? 'Это  задача уже есть в списке!'
+                      : 'Нельзя добавить пустое поле!'}
+            </div>
+
           </div>
           
           <InputItem 

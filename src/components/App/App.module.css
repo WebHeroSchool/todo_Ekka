@@ -23,7 +23,8 @@
     background-color: #eee;
     transition: background-color .4s;
 }
-.link:hover {
+.link:hover,
+.link_active {
     background-color: #6c5ce742;
 }
 .img {

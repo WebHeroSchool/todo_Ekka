@@ -18,7 +18,6 @@ class ItemList extends React.Component {
                   isDone={todoItem.isDone}
                   isHidden={todoItem.isHidden}
                   id={todoItem.id}
-                  index={index}
                   theme={theme} 
                   onClickDone={onClickDone}
                   onClickDelete={onClickDelete}

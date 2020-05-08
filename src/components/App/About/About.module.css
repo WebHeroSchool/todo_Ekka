@@ -19,7 +19,7 @@
 .repoList {
     padding: 0;
     height: 300px;
-}
+} 
 .button_container {
     display: flex;
     justify-content: space-evenly;

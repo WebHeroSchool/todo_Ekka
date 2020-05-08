@@ -39,10 +39,14 @@
     top: 10px;
     opacity: .2;
     transition: all .2s;
+    cursor: pointer;
 }
 .item:hover .icon_delete{
     opacity: 1;
 }
 .hidden {
     display: none;
+}
+.same {
+    border: 5px solid #f0e;
 }
