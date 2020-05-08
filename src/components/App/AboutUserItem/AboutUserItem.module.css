@@ -1,0 +1,70 @@
+.title {
+    font-family: 'Comfortaa';
+    letter-spacing: 1px;
+    font-size: 1.5em;
+    margin-top: .3em;
+}
+.text,
+.link {
+    font-family: Verdana, sans-serif;
+    letter-spacing: 1px;
+    color: #555;
+    font-size: .9em;
+    text-decoration: none;
+}
+.link {
+    display: flex;
+    margin-bottom: 5px;
+}
+.link:hover {
+    color: #6c5ce7;
+    text-decoration: underline;
+}
+.avatar{
+    width: 25%;
+    height: 90%;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px #777;
+}
+.myContacts {
+    margin-left: 15px;
+}
+.desc {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+.desc_content {
+    width: 65%;
+}
+.social {
+    display: flex;
+    justify-content: flex-end;
+}
+.icon {
+    margin-right: 7px;
+}
+.icon path {
+    transition: all .5s;
+}
+.icon:hover path,
+.link:hover .icon path {
+    fill: #6c5ce7;
+    opacity: .7;
+}
+
+@media (max-width: 510px) {
+    .title {
+        margin-bottom: 5px;
+    }
+    .contact {
+        display: none;
+    }
+    .myContacts {
+        display: flex;
+        margin-left: 0;
+    }
+    .text {
+        margin-top: 0;
+    }
+}

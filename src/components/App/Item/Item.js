@@ -1,54 +1,44 @@
 import React from 'react';
 import styles from './Item.module.css';
 import classnames from 'classnames'
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/DeleteForever';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import DeleteIcon from '../img/delete.svg';
 import { ThemeProvider } from '@material-ui/core/styles';
-import Done from '@material-ui/icons/DoneOutline';
-import Undone from '@material-ui/icons/ErrorOutline';
 import PropTypes from 'prop-types';
 
 class Item extends React.Component {  
     
     render() {        
-        const {task, isDone, theme,  onClickDone, id, onClickDelete} = this.props;
+        const {task, isDone, isHidden, id, theme, onClickDone, onClickDelete, provided, innerRef} = this.props;
 
         return(
-            <li className={
+            <div className={
                 classnames({
                     [styles.item]: true,
                     [styles.done]: isDone,
-                })
-            }>
+                    [styles.hidden]: isHidden
+                })}
+                ref={innerRef}
+                {...provided.draggableProps}
+                {...provided.dragHandleProps}
+            >
+            
                 <ThemeProvider theme={theme}>
-                    <FormControlLabel
-                    theme={theme}
-                    control={
-                    <Checkbox 
-                        icon={<Undone fontSize="large" />} 
-                        checkedIcon={<Done />}
-                        name="checkedB"
-                        color="primary"
-                        onClick = {() => onClickDone(id)}
-                    />
-                    }
-                    label={task}   
-                />
-                    <span className={styles.icon_delete}>   
-                        <IconButton 
-                            aria-label="delete" 
+                    <div onClick = {() => onClickDone(id)}  className={styles.task}>
+                        <span>{task}</span>
+                    </div>
+
+                    <div className={styles.icon_delete}>   
+                        <img 
+                            src={DeleteIcon} 
                             onClick = {() => onClickDelete(id)}
-                        >
-                            <DeleteIcon fontSize="small"/>
-                        </IconButton>
-                    </span>
+                        />
+                    </div>
                 </ThemeProvider>
-            </li>      
+
+            </div>
         )
     }
-}
+} 
 
 Item.defaultProps = {
     task: 'Что-то надо сделать',

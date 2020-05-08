@@ -1,44 +1,48 @@
-/* common */
-.wrap {
-    max-width: 350px;
-}
-.content {
-    width: 85%;
-} 
 .title {
     font-family: 'Comfortaa';
-    letter-spacing: 3px;
-    font-size: 2em;
-    margin-top: .3em;
+    letter-spacing: 2px;
+    font-size: 1.5em;
 }
-/* about me */ 
-
-.avatar{
-    width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    margin-right: 20px;
-}
-.desc {
-    display: flex;
-    align-items: center;
-}
-
-/* repos */ 
-
-.repo,
 .text {
     font-family: Verdana, sans-serif;
     letter-spacing: 1px;
 }
-.repo {
-    padding: 4px 0;
+.img {
+    transform: rotate(-10deg);
+    opacity: .7;
 }
-.repo_url {
-    text-decoration: none;
-    color: #333;
+.box_empty_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.repo_url:hover {
-    color: #6c5ce7;
-    text-decoration: underline;
+.repoList {
+    padding: 0;
+    height: 300px;
+} 
+.button_container {
+    display: flex;
+    justify-content: space-evenly;
+}
+.button {
+    color: #000;
+    font-family: 'Comfortaa';
+    letter-spacing: 1px;
+    font-size: 17px;
+    border: 1px solid #c4c4c4;
+    border-radius: 10px;
+    padding: 5px 15px;
+    margin: 20px 0;
+    transition: background-color .4s;
+    outline: none;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #6c5ce742;
+}
+.disable {
+    color: #c4c4c4;
+}
+.disable:hover {
+    background-color: #eee;
 }

@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 
 class InputItem extends React.Component {
+
     state = {
         inputValue: ''
     };
@@ -19,6 +20,7 @@ class InputItem extends React.Component {
     }
     
     render() { 
+
         return (<ThemeProvider theme={this.props.theme}>
             <Grid
                 container
@@ -30,7 +32,7 @@ class InputItem extends React.Component {
                 <Grid item xs>
                 <TextField 
                     id="outlined-basic" 
-                    label={ this.props.error ? "Введи что-нибудь" : "Добавить новое дело" }
+                    label={ this.props.error ? "Введи другое значение" : "Добавить новое дело" }
                     color={ this.props.error ? "secondary" : "primary" }
                     variant="outlined"
                     size="small"
@@ -42,7 +44,7 @@ class InputItem extends React.Component {
                 </Grid>
                 <Grid item xs={2}>
                 <Fab 
-                    color="primary" 
+                    color={ this.props.error ? "secondary" : "primary" } 
                     aria-label="add" 
                     size="small"
                     onClick={() => this.onButtonClick()}
